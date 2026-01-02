@@ -1,5 +1,5 @@
 const ParentPage = require("./parent.page");
-
+const { expect } = require('@playwright/test');
 class HomePage extends ParentPage{
     constructor(page){
         super(page);
@@ -14,6 +14,22 @@ class HomePage extends ParentPage{
           return this.page.getByRole('link', { name: 'Signup / Login' });
     }
 
+    get deleteAccountLink() {
+       return this.page.locator('a[href="/delete_account"]');
+    }
+
+    get accountDeletedHeader(){
+        return this.page.locator('[data-qa="account-deleted"]')
+    }
+
+    async clickDeleteAccount() {
+       await this.clickElement(this.deleteAccountLink);
+    }
+
+    async waitForAccountDeleted(){
+        await super.waitForElementVisible(this.accountDeletedHeader);
+        await expect(this.accountDeletedHeader).toHaveText("Account Deleted!");
+    }
     async clickSignUpBtn(){
         await super.clickElement(this.signupLoginLink)
     }

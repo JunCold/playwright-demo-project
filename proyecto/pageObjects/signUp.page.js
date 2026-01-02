@@ -64,6 +64,10 @@ class SignUpPage extends ParentPage {
     return this.page.locator('#optin')
   }
 
+  get btnCreateAccount(){
+    return this.page.locator('[data-qa="create-account"]')
+  }
+
     async verifyTitle(){
         await super.waitForElementVisible(this.enterAccountInfoTitle)
     }
@@ -104,6 +108,10 @@ class SignUpPage extends ParentPage {
   await super.fillInput(this.mobile_number, user.contact.mobile);
   await super.clickElement(this.newsletterCheckbox);
   await super.clickElement(this.optinCheckbox)
+}
+
+async clickCreateAccount(){
+  await super.clickElement(this.btnCreateAccount)
 }
 
 }
