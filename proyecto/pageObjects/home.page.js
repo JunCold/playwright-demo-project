@@ -22,6 +22,11 @@ class HomePage extends ParentPage{
         return this.page.locator('[data-qa="account-deleted"]')
     }
 
+    get loggedInUser() {
+        return this.page.locator('li a', { hasText: 'Logged in as' });
+    }
+
+
     async clickDeleteAccount() {
        await this.clickElement(this.deleteAccountLink);
     }
@@ -33,6 +38,12 @@ class HomePage extends ParentPage{
     async clickSignUpBtn(){
         await super.clickElement(this.signupLoginLink)
     }
+
+    async verifyUserIsLogged(username) {
+        await expect(this.loggedInUser).toBeVisible();
+        await expect(this.loggedInUser).toContainText(username);
+    }
+
 
  
 
