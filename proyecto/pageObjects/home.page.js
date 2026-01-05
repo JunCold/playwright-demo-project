@@ -25,7 +25,10 @@ class HomePage extends ParentPage{
     get loggedInUser() {
         return this.page.locator('li a', { hasText: 'Logged in as' });
     }
-
+   
+    get logoutBtn() {
+        return this.page.locator('a[href="/logout"]');
+    }
 
     async clickDeleteAccount() {
        await this.clickElement(this.deleteAccountLink);
@@ -42,6 +45,9 @@ class HomePage extends ParentPage{
     async verifyUserIsLogged(username) {
         await expect(this.loggedInUser).toBeVisible();
         await expect(this.loggedInUser).toContainText(username);
+    }
+    async logOut(){
+        await super.clickElement(this.logoutBtn)
     }
 
 

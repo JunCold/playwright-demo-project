@@ -1,5 +1,5 @@
-const LoginPage = require('../pageObjects/loginPage');
 const { test } = require('../utils/fixtures');
+const { loginAs } = require('../utils/auth.helper');
 const { expect } = require('@playwright/test');
 const {USER_AUTOMATION,PASSWORD_AUTOMATION} = process.env;
 test.describe('Login', () => {
@@ -23,6 +23,14 @@ test.describe('Login', () => {
         await expect(loginPage.errorMessage).toBeVisible();
         await expect(homePage.loggedInUser).not.toBeVisible();
         await expect(loginPage.logInHeader).toBeVisible();    
+  });
+  test('Logout', async ({ homePage, loginPage,page }) => {
+    await loginAs(page, homePage, loginPage, USER_AUTOMATION, PASSWORD_AUTOMATION);
+    await homePage.logOut();
+    await expect(homePage.loggedInUser).not.toBeVisible();
+    await expect(homePage.logoutBtn).not.toBeVisible();
+    await expect(loginPage.logInHeader).toBeVisible();
+    await page.pause();
   });
 
 });
