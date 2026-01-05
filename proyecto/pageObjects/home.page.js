@@ -29,6 +29,14 @@ class HomePage extends ParentPage{
     get logoutBtn() {
         return this.page.locator('a[href="/logout"]');
     }
+     get contactUs() {
+        return this.page.locator('a[href="/contact_us"]');
+    }
+
+    get testCases() {
+        return this.page.getByRole('link', { name: 'Test Cases', exact: true });
+    }
+
 
     async clickDeleteAccount() {
        await this.clickElement(this.deleteAccountLink);
@@ -41,6 +49,12 @@ class HomePage extends ParentPage{
     async clickSignUpBtn(){
         await super.clickElement(this.signupLoginLink)
     }
+    async clickContactUs(){
+        await super.clickElement(this.contactUs)
+    }
+    async clickTestCases(){
+        await super.clickElement(this.testCases)
+    }
 
     async verifyUserIsLogged(username) {
         await expect(this.loggedInUser).toBeVisible();
@@ -49,9 +63,6 @@ class HomePage extends ParentPage{
     async logOut(){
         await super.clickElement(this.logoutBtn)
     }
-
-
- 
 
 }
 

@@ -1,6 +1,7 @@
 const { test } = require('../utils/fixtures');
 const { createFakeUser } = require('../utils/userFactory');
 const { expect } = require('@playwright/test');
+const {USER_AUTOMATION} = process.env;
 
 test.describe('Register', () => {
 
@@ -23,6 +24,12 @@ test.describe('Register', () => {
     await accountCreatedPage.clickContinueBtn();
     await homePage.clickDeleteAccount()
     await homePage.waitForAccountDeleted();
+  });
+  test('Register User With Existing Email', async ({ homePage, loginPage,page }) => {
+    await homePage.clickSignUpBtn();
+    await loginPage.registerUser('Repeated_User',USER_AUTOMATION);
+    await expect(loginPage.emailAlreadyExistsMessage).toBeVisible();
+    await page.pause()
   });
 
 });

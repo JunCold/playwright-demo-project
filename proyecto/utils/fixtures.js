@@ -3,6 +3,8 @@ const HomePage = require('../pageObjects/home.page');
 const LoginPage = require('../pageObjects/loginPage');
 const SignUpPage = require('../pageObjects/signUp.page');
 const AccountCreatedPage = require('../pageObjects/accountCreatedPage');
+const ContactUsPage = require('../pageObjects/contactUs.page');
+const TestCasesPage = require('../pageObjects/testCases.page');
 
 const test = base.extend({
 homePage: async ({page},use) => {
@@ -16,6 +18,12 @@ signUpPage: async ({page},use) => {
 },
 accountCreatedPage: async ({page},use) => {
     await use(new AccountCreatedPage(page));
+},
+contactUsPage: async ({page},use) => {
+    await use(new ContactUsPage(page));
+},
+testCasesPage: async ({page},use) => {
+    await use(new TestCasesPage(page));
 },
 })
 module.exports = { test };

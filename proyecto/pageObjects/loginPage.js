@@ -34,6 +34,9 @@ class LoginPage extends ParentPage{
   get errorMessage() {
       return this.page.getByText('Your email or password is incorrect!');
    }
+   get emailAlreadyExistsMessage() {
+      return this.page.getByText('Email Address already exist!', { exact: true });
+   }
 
 
  async registerUser(userName,email){
