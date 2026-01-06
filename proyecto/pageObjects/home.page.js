@@ -17,6 +17,9 @@ class HomePage extends ParentPage{
     get deleteAccountLink() {
        return this.page.locator('a[href="/delete_account"]');
     }
+    get productsPage() {
+       return this.page.locator('a[href="/products"]');
+    }
 
     get accountDeletedHeader(){
         return this.page.locator('[data-qa="account-deleted"]')
@@ -29,17 +32,25 @@ class HomePage extends ParentPage{
     get logoutBtn() {
         return this.page.locator('a[href="/logout"]');
     }
-     get contactUs() {
-        return this.page.locator('a[href="/contact_us"]');
+    
+    get contactUs() {
+       return this.page.locator('a[href="/contact_us"]');
     }
+
+   get cartLink() {
+        return this.page.getByRole('link', { name: 'Cart', exact: true });
+    }
+
 
     get testCases() {
         return this.page.getByRole('link', { name: 'Test Cases', exact: true });
     }
 
-
     async clickDeleteAccount() {
        await this.clickElement(this.deleteAccountLink);
+    }
+    async clickProductsPage(){
+        await super.clickElement(this.productsPage);
     }
 
     async waitForAccountDeleted(){
@@ -62,6 +73,10 @@ class HomePage extends ParentPage{
     }
     async logOut(){
         await super.clickElement(this.logoutBtn)
+    }
+
+    async goToCart(){
+        await super.clickElement(this.cartLink)
     }
 
 }

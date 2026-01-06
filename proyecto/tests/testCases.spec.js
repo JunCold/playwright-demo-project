@@ -9,11 +9,10 @@ test.describe('Test Cases', () => {
     
   });
 
-  test.only('Test Cases', async ({ homePage, page,testCasesPage }) => {
+  test('Test Cases', async ({ homePage,testCasesPage }) => {
     await homePage.clickTestCases()
     await expect(testCasesPage.testCasesTitle).toBeVisible()
     await expect(homePage.page).toHaveURL('/test_cases');
-    await page.pause();
 });
 
 

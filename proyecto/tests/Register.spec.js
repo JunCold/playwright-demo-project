@@ -12,7 +12,7 @@ test.describe('Register', () => {
   });
 
   test('Register User', async ({ homePage, loginPage, signUpPage,
-    accountCreatedPage, page }) => {
+    accountCreatedPage }) => {
     const user = createFakeUser();
     user.account.password = user.password;
     await homePage.clickSignUpBtn();
@@ -25,11 +25,11 @@ test.describe('Register', () => {
     await homePage.clickDeleteAccount()
     await homePage.waitForAccountDeleted();
   });
+
   test('Register User With Existing Email', async ({ homePage, loginPage,page }) => {
     await homePage.clickSignUpBtn();
     await loginPage.registerUser('Repeated_User',USER_AUTOMATION);
     await expect(loginPage.emailAlreadyExistsMessage).toBeVisible();
-    await page.pause()
   });
 
 });

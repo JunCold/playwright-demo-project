@@ -5,6 +5,9 @@ const SignUpPage = require('../pageObjects/signUp.page');
 const AccountCreatedPage = require('../pageObjects/accountCreatedPage');
 const ContactUsPage = require('../pageObjects/contactUs.page');
 const TestCasesPage = require('../pageObjects/testCases.page');
+const ProductsPage = require('../pageObjects/productsPage');
+const ProductDetailsPage = require('../pageObjects/productDetails.page');
+const CartPage = require('../pageObjects/cart.page');
 
 const test = base.extend({
 homePage: async ({page},use) => {
@@ -24,6 +27,15 @@ contactUsPage: async ({page},use) => {
 },
 testCasesPage: async ({page},use) => {
     await use(new TestCasesPage(page));
+},
+productsPage: async ({page},use) => {
+    await use(new ProductsPage(page));
+},
+productDetailsPage: async ({page},use) => {
+    await use(new ProductDetailsPage(page));
+},
+cartPage: async ({page},use) => {
+    await use(new CartPage(page));
 },
 })
 module.exports = { test };

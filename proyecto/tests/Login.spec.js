@@ -30,7 +30,6 @@ test.describe('Login', () => {
     await expect(homePage.loggedInUser).not.toBeVisible();
     await expect(homePage.logoutBtn).not.toBeVisible();
     await expect(loginPage.logInHeader).toBeVisible();
-    await page.pause();
   });
 
 });
