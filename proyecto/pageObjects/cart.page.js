@@ -18,6 +18,10 @@ class CartPage extends ParentPage {
     return this.page.locator(".check_out");
   }
 
+  get registerLoginLink() {
+    return this.page.locator('.modal-content a[href="/login"]');
+  }
+
   cartRowByIndex(index) {
     return this.cartRows.nth(index);
   }
@@ -64,8 +68,12 @@ class CartPage extends ParentPage {
   parsePrice(text) {
     return Number(text.replace(/[^0-9]/g, ""));
   }
-  async clickCheckOut(){
-    await super.clickElement(this.proceedToCheckoutButton)
+  async clickCheckOut() {
+    await super.clickElement(this.proceedToCheckoutButton);
+  }
+
+  async clickRegisterLogin(){
+    await super.clickElement(this.registerLoginLink)
   }
 }
 

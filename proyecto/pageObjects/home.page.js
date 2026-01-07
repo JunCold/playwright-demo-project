@@ -1,84 +1,82 @@
 const ParentPage = require("./parent.page");
 const { expect } = require('@playwright/test');
-class HomePage extends ParentPage{
-    constructor(page){
-        super(page);
-        this.page = page;
-    }
+class HomePage extends ParentPage {
+  constructor(page) {
+    super(page);
+    this.page = page;
+  }
 
-    get slider(){
-        return this.page.locator('#slider');
-    }
+  get slider() {
+    return this.page.locator("#slider");
+  }
 
-    get signupLoginLink(){
-          return this.page.getByRole('link', { name: 'Signup / Login' });
-    }
+  get signupLoginLink() {
+    return this.page.getByRole("link", { name: "Signup / Login" });
+  }
 
-    get deleteAccountLink() {
-       return this.page.locator('a[href="/delete_account"]');
-    }
-    get productsPage() {
-       return this.page.locator('a[href="/products"]');
-    }
+  get deleteAccountLink() {
+    return this.page.locator('a[href="/delete_account"]');
+  }
+  get productsPage() {
+    return this.page.locator('a[href="/products"]');
+  }
 
-    get accountDeletedHeader(){
-        return this.page.locator('[data-qa="account-deleted"]')
-    }
+  get accountDeletedHeader() {
+    return this.page.locator('[data-qa="account-deleted"]');
+  }
 
-    get loggedInUser() {
-        return this.page.locator('li a', { hasText: 'Logged in as' });
-    }
-   
-    get logoutBtn() {
-        return this.page.locator('a[href="/logout"]');
-    }
-    
-    get contactUs() {
-       return this.page.locator('a[href="/contact_us"]');
-    }
+  get loggedInUser() {
+    return this.page.locator("li a", { hasText: "Logged in as" });
+  }
 
-   get cartLink() {
-        return this.page.getByRole('link', { name: 'Cart', exact: true });
-    }
+  get logoutBtn() {
+    return this.page.locator('a[href="/logout"]');
+  }
 
+  get contactUs() {
+    return this.page.locator('a[href="/contact_us"]');
+  }
 
-    get testCases() {
-        return this.page.getByRole('link', { name: 'Test Cases', exact: true });
-    }
+  get cartLink() {
+    return this.page.locator('ul.navbar-nav a[href="/view_cart"]');
+  }
 
-    async clickDeleteAccount() {
-       await this.clickElement(this.deleteAccountLink);
-    }
-    async clickProductsPage(){
-        await super.clickElement(this.productsPage);
-    }
+  get testCases() {
+    return this.page.getByRole("link", { name: "Test Cases", exact: true });
+  }
 
-    async waitForAccountDeleted(){
-        await super.waitForElementVisible(this.accountDeletedHeader);
-        await expect(this.accountDeletedHeader).toHaveText("Account Deleted!");
-    }
-    async clickSignUpBtn(){
-        await super.clickElement(this.signupLoginLink)
-    }
-    async clickContactUs(){
-        await super.clickElement(this.contactUs)
-    }
-    async clickTestCases(){
-        await super.clickElement(this.testCases)
-    }
+  async clickDeleteAccount() {
+    await this.clickElement(this.deleteAccountLink);
+  }
+  async clickProductsPage() {
+    await super.clickElement(this.productsPage);
+  }
 
-    async verifyUserIsLogged(username) {
-        await expect(this.loggedInUser).toBeVisible();
-        await expect(this.loggedInUser).toContainText(username);
-    }
-    async logOut(){
-        await super.clickElement(this.logoutBtn)
-    }
+  async waitForAccountDeleted() {
+    await super.waitForElementVisible(this.accountDeletedHeader);
+    await expect(this.accountDeletedHeader).toHaveText("Account Deleted!");
+  }
+  async clickSignUpBtn() {
+    await super.clickElement(this.signupLoginLink);
+  }
+  async clickContactUs() {
+    await super.clickElement(this.contactUs);
+  }
+  async clickTestCases() {
+    await super.clickElement(this.testCases);
+  }
 
-    async goToCart(){
-        await super.clickElement(this.cartLink)
-    }
+  async verifyUserIsLogged(username) {
+    await expect(this.loggedInUser).toBeVisible();
+    await expect(this.loggedInUser).toContainText(username);
+  }
+  async logOut() {
+    await super.clickElement(this.logoutBtn);
+  }
 
+  async goToCart() {
+    await super.clickElement(this.cartLink);
+  }
 }
 
 module.exports = HomePage;

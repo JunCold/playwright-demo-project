@@ -8,8 +8,6 @@ async function registerUserFlow({
 }) {
   const user = createFakeUser();
   user.account.password = user.password;
-
-  await homePage.clickSignUpBtn();
   await loginPage.registerUser(user.name, user.email);
   await signUpPage.verifyTitle();
   await signUpPage.enterAccountInformation(user);
