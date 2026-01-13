@@ -26,7 +26,6 @@ const test = base.extend({
         url.includes('googlesyndication') ||
         url.includes('adservice')
       ) {
-        console.log('⚠ ad removed from '+url)
         return route.abort();
         
       }

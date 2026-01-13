@@ -2,7 +2,7 @@ const { test } = require('../utils/fixtures');
 const { loginAs } = require('../utils/auth.helper');
 const { expect } = require('@playwright/test');
 const {USER_AUTOMATION,PASSWORD_AUTOMATION} = process.env;
-const { closeAdsIfPresent } = require("../utils/handleAds");
+
 test.describe('Login', () => {
 
   test.beforeEach(async ({ page,homePage }) => {
